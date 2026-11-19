@@ -407,6 +407,11 @@ def split_page(s):
     return s[:head_end], s[head_end:body_open_end], s[body_open_end:main_start], s[main_end:]
 
 
+FAVICON = ('<link rel="icon" href="./favicon.ico" sizes="16x16 32x32 48x48">\n'
+           '<link rel="icon" type="image/png" href="./favicon-512.png" sizes="512x512">\n'
+           '<link rel="apple-touch-icon" href="./apple-touch-icon.png">\n')
+
+
 def build():
     shell = open(os.path.join(SITE, "solutions.html"), encoding="utf-8").read()
     head, body_open, header, footer = split_page(shell)
@@ -415,6 +420,9 @@ def build():
         footer = footer.replace("</body>", '<script src="./stadia-pages.js"></script>\n</body>', 1)
     footer = footer.replace('<script src="./stadia-engine.js"></script>\n', "")
     head = head.replace('<link rel="stylesheet" href="./stadia-engine.css">\n', "")
+    # Favicon: the SP monogram from 40-stadia-ip-official-logo.png (wordmark cropped off).
+    head = re.sub(r'<link rel="icon"[^>]*>\s*(?:<link rel="(?:icon|apple-touch-icon)"[^>]*>\s*)*', "", head)
+    head = head.replace("</title>", "</title>\n" + FAVICON, 1)
     for filename, (title, content) in PAGES.items():
         full_title = title if filename == "index.html" else "%s | STADIA IP" % title
         page_head = re.sub(r"<title>.*?</title>", "<title>%s</title>" % full_title, head, count=1, flags=re.S)
