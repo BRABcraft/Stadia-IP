@@ -1,6 +1,4 @@
-// Revenue Benchmark & Opportunity Engine (homepage).
-// Calculation model carried over from the Gemini prototype; the Chart.js
-// charts are replaced with CSS bars so the page needs no extra libraries.
+// Revenue estimator (revenue.html). Bars are plain CSS, no chart library.
 (function () {
   var root = document.getElementById('revenue-engine');
   if (!root) return;
@@ -87,14 +85,14 @@
     setText('sieSponsorVal', fmt(d.sponsor));
 
     setText('sieTotal', fmt(d.gross));
-    setText('sieGrowth', '+' + d.growthPct.toFixed(1) + '%');
+    setText('sieGrowth', d.growthPct.toFixed(1) + '%');
     setText('sieScore', d.score);
     setText('sieTierLabel', d.tierLabel);
-    $('sieMeter').style.width = d.score + '%';
+    if ($('sieMeter')) $('sieMeter').style.width = d.score + '%';
     setText('sieGross', fmt(d.gross));
     setText('sieCapex', fmt(d.capex));
     setText('sieNet', fmt(d.net));
-    setText('siePayback', d.payback.toFixed(1) + ' months');
+    setText('siePayback', d.payback.toFixed(1));
     setText('sieNilYield', fmt(d.nilYield));
 
     var parts = { cabana: d.cabanaRev, vip: d.vipRev, events: d.eventsRev, sponsor: d.sponsorRev };
@@ -105,7 +103,7 @@
       setText('siePct-' + s.key, Math.round(pct) + '%');
     });
     setText('sieGap', fmt(d.footprintGap));
-    setText('sieYield', fmt(d.yieldPerSqFt) + ' per sq ft yield potential');
+    setText('sieYield', fmt(d.yieldPerSqFt));
 
     var max = Math.max(d.legacyTotal, d.gross) || 1;
     $('sieBarLegacy').style.width = (d.legacyTotal / max * 100) + '%';
@@ -144,7 +142,7 @@
     setText('sieBriefRev', fmt(d.gross));
     setText('sieBriefScore', d.score + ' / 100');
     setText('sieBriefCapex', fmt(d.capex));
-    setText('sieBriefPayback', d.payback.toFixed(1) + ' mo');
+    setText('sieBriefPayback', d.payback.toFixed(1));
     setText('sieBriefCabanas', d.cabanas);
     setText('sieBriefVip', d.vipPasses.toLocaleString());
     setText('sieBriefEvents', d.events);

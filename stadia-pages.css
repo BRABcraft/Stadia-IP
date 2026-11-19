@@ -1,5 +1,5 @@
-/* Styles for the STADIA IP inner pages. Matches the homepage's
-   Barlow Condensed / DM Sans type and maroon + ink palette. */
+/* STADIA IP page styles (all pages are built by _backup/build_pages.py).
+   Barlow Condensed / DM Sans type, maroon + ink palette. */
 :root {
   --sip-ink: #151416;
   --sip-red: #86151d;
@@ -190,22 +190,6 @@
 .sip-band--ink .sip-list li, .sip-band--deep .sip-list li, .sip-band--red .sip-list li { border-color: rgba(255, 255, 255, 0.22); }
 .sip-band--ink .sip-list li::before, .sip-band--deep .sip-list li::before, .sip-band--red .sip-list li::before { background: #fff; }
 
-/* Process steps */
-.sip-steps { counter-reset: none; }
-.sip-step { border-top: 3px solid var(--sip-red); padding-top: 18px; }
-.sip-band--ink .sip-step, .sip-band--deep .sip-step, .sip-band--red .sip-step { border-color: #fff; }
-.sip-step__num {
-  display: block;
-  font-family: var(--sip-display);
-  font-weight: 800;
-  font-size: clamp(44px, 5vw, 64px);
-  line-height: 1;
-  color: var(--sip-red);
-  margin-bottom: 8px;
-}
-.sip-band--ink .sip-step__num, .sip-band--deep .sip-step__num { color: var(--sip-red-on-dark); }
-.sip-band--red .sip-step__num { color: #fff; }
-
 /* Gallery */
 .sip-gallery { display: grid; gap: clamp(16px, 2vw, 28px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
 .sip-gallery figure { margin: 0; }
@@ -299,17 +283,43 @@
 .sip-form .sip-btn { margin-top: 24px; width: 100%; }
 .sip-form__status { margin-top: 14px !important; font-size: 15px !important; min-height: 1.5em; }
 
-/* Investor steps */
-.sip-numbered { list-style: none; padding: 0; margin: 0 0 32px; counter-reset: sip; }
-.sip-numbered li { counter-increment: sip; position: relative; padding: 16px 0 16px 64px; border-top: 1px solid var(--sip-rule); margin: 0; }
-.sip-numbered li::before {
-  content: "0" counter(sip);
-  position: absolute; left: 0; top: 10px;
-  font-family: var(--sip-display);
-  font-weight: 800;
-  font-size: 36px;
-  color: var(--sip-red);
-}
-
 /* Anchor targets on the homepage sit below the fixed header */
 section[id] { scroll-margin-top: 90px; }
+
+/* Shorter bands */
+.sip-band--short { padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(40px, 5vw, 64px); }
+.sip-band--tight { padding-top: clamp(32px, 4vw, 56px); }
+.sip-band > .sip-wrap > .sip-h2:first-child { margin-bottom: clamp(28px, 4vw, 48px); }
+
+/* Heading + buttons on one line */
+.sip-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 48px; }
+.sip-strip .sip-h2 { margin-bottom: 8px; }
+.sip-strip p { margin: 0 !important; max-width: 56ch; }
+.sip-strip .sip-btns { margin-top: 0; }
+
+/* Linked cards on the homepage */
+.sip-card--link { display: block; text-decoration: none !important; color: inherit; }
+.sip-card--link img { transition: opacity 0.15s ease; }
+.sip-card--link:hover img, .sip-card--link:focus-visible img { opacity: 0.88; }
+.sip-card--link:hover .sip-h3, .sip-card--link:focus-visible .sip-h3 { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Who we work with: plain linked list */
+.sip-who { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); border-top: 1px solid var(--sip-rule); }
+.sip-who li { margin: 0; border-bottom: 1px solid var(--sip-rule); }
+.sip-who a {
+  display: block; padding: 20px 0;
+  font-family: var(--sip-display); font-weight: 700; font-size: clamp(22px, 2vw, 28px);
+  text-transform: uppercase; text-decoration: none; color: var(--sip-ink);
+}
+.sip-who a:hover, .sip-who a:focus-visible { color: var(--sip-red); }
+
+.sip-role { font-family: var(--sip-display); font-weight: 700; font-size: 20px !important; text-transform: uppercase; color: var(--sip-red); }
+.sip-founder--short { grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); align-items: center; }
+.sip-founder--short img { max-width: 320px; }
+@media (max-width: 600px) { .sip-founder--short { grid-template-columns: 1fr; } .sip-founder--short img { max-width: 220px; } }
+.sip-nowrap { white-space: nowrap; }
+
+/* Plain page headers (no photo) stay compact */
+.sip-hero--paper, .sip-hero--red { padding-top: clamp(48px, 6vw, 88px); padding-bottom: clamp(36px, 5vw, 64px); }
+.sip-hero--paper .sip-lead, .sip-hero--red .sip-lead { margin-bottom: 0 !important; }
+.sip-hero--red .sip-btns { margin-top: 28px; }

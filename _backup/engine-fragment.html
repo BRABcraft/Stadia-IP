@@ -1,0 +1,211 @@
+<!-- Revenue estimator (stadia-engine.css / stadia-engine.js) -->
+<section id="revenue-engine" class="sie sie--ink" aria-label="Revenue estimator">
+  <div class="sie-wrap">
+    <div class="sie-calc">
+      <div>
+        <div class="sie-group" role="group" aria-labelledby="sieGroup1">
+          <div class="sie-group__head">
+            <h2 class="sie-group__title" id="sieGroup1">Your venue</h2>
+          </div>
+          <div class="sie-fields">
+            <div>
+              <label class="sie-label" for="sieName">School or venue</label>
+              <input type="text" id="sieName" value="State University Athletics" autocomplete="organization">
+            </div>
+            <div>
+              <label class="sie-label" for="sieTier">Division</label>
+              <select id="sieTier">
+                <option value="p4" selected>Power 4</option>
+                <option value="g5">Group of 5</option>
+                <option value="fcs">FCS</option>
+                <option value="div2">Division II</option>
+              </select>
+            </div>
+            <div>
+              <label class="sie-label" for="sieBudget">Athletics budget ($M)</label>
+              <input type="number" id="sieBudget" value="85" min="5" max="300" inputmode="decimal">
+            </div>
+            <div>
+              <label class="sie-label" for="sieCapacity">Stadium capacity</label>
+              <input type="number" id="sieCapacity" value="55000" min="0" step="500" inputmode="numeric">
+            </div>
+            <div>
+              <label class="sie-label" for="sieSqFt">Open space (sq ft)</label>
+              <input type="number" id="sieSqFt" value="18000" min="0" step="500" inputmode="numeric">
+            </div>
+            <div>
+              <label class="sie-label" for="sieCurrentVip">Suites you have now</label>
+              <input type="number" id="sieCurrentVip" value="4" min="0" step="1" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+
+        <div class="sie-group" role="group" aria-labelledby="sieGroup2">
+          <div class="sie-group__head">
+            <h2 class="sie-group__title" id="sieGroup2">What you add</h2>
+            <button type="button" class="sie-reset" id="sieReset">Reset</button>
+          </div>
+
+          <div class="sie-slider">
+            <div class="sie-slider__top">
+              <label class="sie-label" for="sieCabanas">StruXure Cabana X suites</label>
+              <output class="sie-value" id="sieCabanasVal" for="sieCabanas">12 units</output>
+            </div>
+            <input type="range" id="sieCabanas" min="2" max="36" step="2" value="12">
+            <div class="sie-slider__meta"><span>$75,000 per suite, per season</span></div>
+          </div>
+
+          <div class="sie-slider">
+            <div class="sie-slider__top">
+              <label class="sie-label" for="sieVip">Field-level lounge passes</label>
+              <output class="sie-value" id="sieVipVal" for="sieVip">250 passes</output>
+            </div>
+            <input type="range" id="sieVip" min="50" max="1000" step="25" value="250">
+            <div class="sie-slider__meta"><span>$2,500 per pass, per season</span></div>
+          </div>
+
+          <div class="sie-slider">
+            <div class="sie-slider__top">
+              <label class="sie-label" for="sieEvents">Non-game-day events</label>
+              <output class="sie-value" id="sieEventsVal" for="sieEvents">18 / year</output>
+            </div>
+            <input type="range" id="sieEvents" min="2" max="60" step="2" value="18">
+            <div class="sie-slider__meta"><span>Receptions, retreats, donor dinners. About $22,000 each</span></div>
+          </div>
+
+          <div class="sie-slider">
+            <div class="sie-slider__top">
+              <label class="sie-label" for="sieSponsor">Naming and sponsorship</label>
+              <output class="sie-value" id="sieSponsorVal" for="sieSponsor">$600,000</output>
+            </div>
+            <input type="range" id="sieSponsor" min="100000" max="2500000" step="50000" value="600000">
+            <div class="sie-slider__meta"><span>Per year</span></div>
+          </div>
+
+          <label class="sie-toggle" for="sieNil">
+            <span>
+              <strong>Share with foundation or NIL</strong>
+              <small>Sends 25% of suite and lounge revenue to your foundation or NIL fund</small>
+            </span>
+            <input type="checkbox" id="sieNil" checked>
+            <span class="sie-switch" aria-hidden="true"></span>
+          </label>
+        </div>
+      </div>
+
+      <aside class="sie-result" aria-label="Estimate">
+        <p class="sie-result__label">Estimated revenue per year</p>
+        <output class="sie-result__total" id="sieTotal" aria-live="polite">$0</output>
+        <p class="sie-result__growth">Equal to <strong id="sieGrowth">0%</strong> of your athletics budget</p>
+
+        <dl class="sie-figures">
+          <div><dt>Estimated build cost</dt><dd id="sieCapex">$0</dd></div>
+          <div><dt>First-year net</dt><dd id="sieNet">$0</dd></div>
+          <div><dt>Foundation / NIL share</dt><dd id="sieNilYield">$0</dd></div>
+          <div><dt>Months of revenue to cover build cost</dt><dd id="siePayback">0</dd></div>
+        </dl>
+
+        <div class="sie-actions">
+          <button type="button" class="sip-btn sip-btn--light" id="sieOpenBrief">Print a summary</button>
+          <a class="sip-btn sip-btn--ghost" href="contact.html">Talk to Bill</a>
+        </div>
+        <p class="sie-note">Rough estimate from average prices. Not a quote.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="revenue-benchmark" class="sie sie--paper" aria-labelledby="sieBenchHeading">
+  <div class="sie-wrap">
+    <h2 class="sie-h2" id="sieBenchHeading">Today vs. after</h2>
+
+    <div class="sie-bench">
+      <div class="sie-panel">
+        <h3 class="sie-h3">Where it comes from</h3>
+        <div class="sie-stack" aria-hidden="true">
+          <span id="sieSeg-cabana" style="background:#86151d"></span>
+          <span id="sieSeg-vip" style="background:#430d12"></span>
+          <span id="sieSeg-events" style="background:#e2525c"></span>
+          <span id="sieSeg-sponsor" style="background:#8f898c"></span>
+        </div>
+        <ul class="sie-legend">
+          <li><i style="background:#86151d"></i><span>Cabana suites</span><b id="sieAmt-cabana">$0</b><em id="siePct-cabana">0%</em></li>
+          <li><i style="background:#430d12"></i><span>Lounge passes</span><b id="sieAmt-vip">$0</b><em id="siePct-vip">0%</em></li>
+          <li><i style="background:#e2525c"></i><span>Events</span><b id="sieAmt-events">$0</b><em id="siePct-events">0%</em></li>
+          <li><i style="background:#8f898c"></i><span>Sponsorship</span><b id="sieAmt-sponsor">$0</b><em id="siePct-sponsor">0%</em></li>
+        </ul>
+        <div class="sie-gap">
+          <div>
+            <p class="sie-note" style="margin:0">Revenue per square foot of new space</p>
+          </div>
+          <strong id="sieYield">$0</strong>
+        </div>
+      </div>
+
+      <div class="sie-panel">
+        <h3 class="sie-h3">Annual revenue</h3>
+        <div class="sie-bars">
+          <div class="sie-bar">
+            <div class="sie-bar__top"><span>Today</span><span id="sieLegacyTotal">$0</span></div>
+            <div class="sie-bar__track"><span class="sie-bar__fill" id="sieBarLegacy"></span></div>
+          </div>
+          <div class="sie-bar sie-bar--stadia">
+            <div class="sie-bar__top"><span>After</span><span id="sieStadiaTotal">$0</span></div>
+            <div class="sie-bar__track"><span class="sie-bar__fill" id="sieBarStadia"></span></div>
+          </div>
+        </div>
+        <table class="sie-table">
+          <thead><tr><th scope="col">Source</th><th scope="col">Today</th><th scope="col">After</th></tr></thead>
+          <tbody>
+            <tr><td>Suites and lounge</td><td id="sieTbLegacySuites">$0</td><td id="sieTbStadiaSuites">$0</td></tr>
+            <tr><td>Sponsorship</td><td id="sieTbLegacySponsor">$0</td><td id="sieTbStadiaSponsor">$0</td></tr>
+            <tr><td>Event rentals</td><td id="sieTbLegacyEvents">$0</td><td id="sieTbStadiaEvents">$0</td></tr>
+            <tr><td>Foundation / NIL</td><td>$0</td><td id="sieTbStadiaNil">$0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="sie-note" style="margin-top:28px">&ldquo;Today&rdquo; assumes $50,000 per existing suite plus typical sponsorship and rental income for your division. Prices are adjusted by division. Build cost assumes $48,000 per suite and $18 per square foot of site work.</p>
+  </div>
+</section>
+
+<div class="sie-modal" id="sieModal" role="dialog" aria-modal="true" aria-labelledby="sieModalTitle" hidden>
+  <div class="sie-modal__box">
+    <div class="sie-modal__bar">
+      <h2 id="sieModalTitle">Revenue estimate</h2>
+      <button type="button" class="sie-modal__close" id="sieModalClose" aria-label="Close summary">×</button>
+    </div>
+    <div class="sie-brief" id="sieBrief">
+      <div class="sie-brief__head">
+        <div>
+          <h3 id="sieBriefName">State University Athletics</h3>
+          <p id="sieBriefTier">Power 4 | Capacity: 55,000</p>
+        </div>
+        <div class="sie-brief__tag">STADIA IP<br><span id="sieBriefDate"></span></div>
+      </div>
+      <p>Estimate for <strong id="sieBriefNameText">State University Athletics</strong>, based on the options selected in the STADIA IP revenue estimator.</p>
+      <div class="sie-brief__stats">
+        <div><span>Revenue per year</span><strong id="sieBriefRev">$0</strong></div>
+        <div><span>Build cost</span><strong id="sieBriefCapex">$0</strong></div>
+        <div><span>Months to cover build cost</span><strong id="sieBriefPayback">0</strong></div>
+      </div>
+      <h4>Options selected</h4>
+      <ul>
+        <li><span id="sieBriefCabanas">12</span> StruXure Cabana X suites</li>
+        <li><span id="sieBriefVip">250</span> field-level lounge passes</li>
+        <li><span id="sieBriefEvents">18</span> non-game-day events per year</li>
+        <li><span id="sieBriefNil">$0</span> to foundation or NIL</li>
+      </ul>
+      <div class="sie-brief__foot">
+        <span>STADIA IP · Bill@StadiaIP.com · 405-371-1564</span>
+        <span>Rough estimate, not a quote</span>
+      </div>
+    </div>
+    <div class="sie-modal__actions">
+      <button type="button" class="sip-btn sip-btn--ghost" id="sieCloseBrief">Close</button>
+      <button type="button" class="sip-btn sip-btn--ghost" id="sieCopyBrief">Copy text</button>
+      <button type="button" class="sip-btn" id="siePrintBrief">Print</button>
+    </div>
+  </div>
+</div>
+<!-- /Revenue estimator -->
